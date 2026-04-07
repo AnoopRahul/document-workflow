@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: document-workflow
-        image: yourdockerhubusername/document-workflow:latest
+        image: 23mis0333/document-workflow:latest
         ports:
         - containerPort: 8080
         livenessProbe:
