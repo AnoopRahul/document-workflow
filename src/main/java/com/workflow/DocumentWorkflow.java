@@ -39,4 +39,17 @@ public class DocumentWorkflow {
             throw new IllegalStateException("Only documents under review can be rejected.");
         }
     }
+
+    // ✅ ADD THIS MAIN METHOD
+    public static void main(String[] args) {
+        DocumentWorkflow workflow = new DocumentWorkflow();
+
+        System.out.println("Initial State: " + workflow.getCurrentState());
+
+        workflow.submitForReview();
+        System.out.println("After Submit: " + workflow.getCurrentState());
+
+        workflow.approve();
+        System.out.println("After Approval: " + workflow.getCurrentState());
+    }
 }
