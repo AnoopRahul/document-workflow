@@ -15,7 +15,7 @@ public class DocumentWorkflowTest {
 
     @Test
     void testValidRejectionFlow() {
-        DocumentWorkflow doc = new DocumentWorkflow();
+        DocumentWorkflow doc = new DocumentWorkflowApplication();
         doc.submitForReview();
         doc.reject();
         assertEquals(DocumentWorkflow.State.REJECTED, doc.getCurrentState());
@@ -23,7 +23,7 @@ public class DocumentWorkflowTest {
 
     @Test
     void testInvalidTransition() {
-        DocumentWorkflow doc = new DocumentWorkflow();
+        DocumentWorkflow doc = new DocumentWorkflowApplication();
         assertThrows(IllegalStateException.class, doc::approve);
     }
 }
