@@ -7,7 +7,7 @@ public class DocumentWorkflowTest {
 
     @Test
     void testValidApprovalFlow() {
-        DocumentWorkflow doc = new DocumentWorkflow();
+       DocumentWorkflowApplication app = new DocumentWorkflowApplication();
         doc.submitForReview();
         doc.approve();
         assertEquals(DocumentWorkflow.State.APPROVED, doc.getCurrentState());
