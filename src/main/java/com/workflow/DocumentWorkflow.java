@@ -1,16 +1,20 @@
 package com.workflow;
 
-public class DocumentWorkflow {
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
 
+@SpringBootApplication
+@RestController
+@RequestMapping("/workflow")
+public class DocumentWorkflowApplication {
+
+    // ================= WORKFLOW LOGIC =================
     public enum State {
         DRAFT, UNDER_REVIEW, APPROVED, REJECTED
     }
 
-    private State currentState;
-
-    public DocumentWorkflow() {
-        this.currentState = State.DRAFT;
-    }
+    private State currentState = State.DRAFT;
 
     public State getCurrentState() {
         return currentState;
@@ -40,20 +44,38 @@ public class DocumentWorkflow {
         }
     }
 
-    // ✅ ADD THIS MAIN METHOD
-   public static void main(String[] args) throws InterruptedException {
-    DocumentWorkflow workflow = new DocumentWorkflow();
-
-    System.out.println("Initial State: " + workflow.getCurrentState());
-
-    workflow.submitForReview();
-    System.out.println("After Submit: " + workflow.getCurrentState());
-
-    workflow.approve();
-    System.out.println("After Approval: " + workflow.getCurrentState());
-
-    while (true) {
-        Thread.sleep(10000);
+    // ================= MAIN METHOD =================
+    public static void main(String[] args) {
+        SpringApplication.run(DocumentWorkflowApplication.class, args);
     }
-}
+
+    // ================= REST APIs =================
+
+    @GetMapping("/")
+    public String home() {
+        return "🚀 Document Workflow App Running!";
+    }
+
+    @GetMapping("/state")
+    public State state() {
+        return currentState;
+    }
+
+    @PostMapping("/submit")
+    public String submit() {
+        submitForReview();
+        return "Submitted for review";
+    }
+
+    @PostMapping("/approve")
+    public String approveDoc() {
+        approve();
+        return "Approved";
+    }
+
+    @PostMapping("/reject")
+    public String rejectDoc() {
+        reject();
+        return "Rejected";
+    }
 }
