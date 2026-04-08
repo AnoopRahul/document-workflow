@@ -51,5 +51,8 @@ public class DocumentWorkflow {
 
         workflow.approve();
         System.out.println("After Approval: " + workflow.getCurrentState());
+         while (true) {
+        Thread.sleep(10000);
+    }
     }
 }
