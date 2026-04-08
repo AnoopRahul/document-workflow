@@ -41,18 +41,19 @@ public class DocumentWorkflow {
     }
 
     // ✅ ADD THIS MAIN METHOD
-    public static void main(String[] args) {
-        DocumentWorkflow workflow = new DocumentWorkflow();
+   public static void main(String[] args) throws InterruptedException {
+    DocumentWorkflow workflow = new DocumentWorkflow();
 
-        System.out.println("Initial State: " + workflow.getCurrentState());
+    System.out.println("Initial State: " + workflow.getCurrentState());
 
-        workflow.submitForReview();
-        System.out.println("After Submit: " + workflow.getCurrentState());
+    workflow.submitForReview();
+    System.out.println("After Submit: " + workflow.getCurrentState());
 
-        workflow.approve();
-        System.out.println("After Approval: " + workflow.getCurrentState());
-         while (true) {
+    workflow.approve();
+    System.out.println("After Approval: " + workflow.getCurrentState());
+
+    while (true) {
         Thread.sleep(10000);
     }
-    }
+}
 }
